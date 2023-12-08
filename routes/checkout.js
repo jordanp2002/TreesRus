@@ -38,9 +38,14 @@ router.get('/', function(req, res, next) {
                 </style>
             </head>
             <body>
-                <h1>Enter your customer id to complete the transaction:</h1>
+                <h1>Enter your customer id and paymentInfo to complete the transaction:</h1>
                 <form method="get" action="/order">
+                    <label for="customerId">Customer ID:</label>
                     <input type="text" name="customerId" size="50">
+                    <label for="paymentType">Payment Type:</label>
+                    <input type="text" name="paymentType" size="50">
+                    <label for="paymentNumber">Payment Number:</label>
+                    <input type="text" name="paymentNumber" size="50">
                     <input type="submit" value="Submit"><input type="reset" value="Reset">
                 </form>
                 <h2>Or, go back to your <a href="/showcart">shopping cart</a>.</h2>

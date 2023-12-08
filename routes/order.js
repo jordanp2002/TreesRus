@@ -40,12 +40,19 @@ router.get('/', function(req, res, next) {
         <body>
     `);
 
-
+    let paymentNumber = false;
     let custId = false;
     if (req.query.customerId && Number.isInteger(parseInt(req.query.customerId))) {
         custId = parseInt(req.query.customerId);
     } else {
         res.write("<h1>Invalid customer id.  Go back to the previous page and try again.</h1>");
+        res.end();
+        return;
+    }
+    if(Number.isInteger(parseInt(req.query.paymentNumber))){
+        paymentNumber = req.query.paymentNumber;
+    }else{
+        res.write("<h1>Invalid payment number.  Go back to the previous page and try again.</h1>");
         res.end();
         return;
     }
@@ -61,6 +68,8 @@ router.get('/', function(req, res, next) {
     let sqlQuery = "SELECT customerId, firstName+' '+lastName as cname FROM Customer WHERE customerId = @custId";
     let orderId = false;
     let custName = false;
+    let paymentType = req.query.paymentType;
+    
     (async function() {
         try {
             let pool = await sql.connect(dbConfig);
@@ -69,6 +78,12 @@ router.get('/', function(req, res, next) {
                 .input('custId', sql.Int, custId)
                 .query(sqlQuery);
             custName = result.recordset[0].cname;
+
+            let payQuery = "INSERT INTO paymentmethod (paymentType,paymentNumber) OUTPUT INSERTED.paymentMethodId VALUES(@paymentType, @paymentNumber)";
+            payResult = await pool.request()
+            .input('paymentType', sql.VarChar(20), paymentType)
+            .input('paymentNumber', sql.VarChar(30), paymentNumber)
+            .query(payQuery);
             
             let orderDate = moment().format('Y-MM-DD HH:mm:ss');
             sqlQuery = "INSERT INTO OrderSummary (customerId, totalAmount, orderDate) OUTPUT INSERTED.orderId VALUES(@custId, 0, @orderDate);"
@@ -128,7 +143,7 @@ router.get('/', function(req, res, next) {
 			res.write("<h1>Order completed.  Will be shipped soon...</h1>");
 			res.write("<h1>Your order reference number is: " + orderId + "</h1>");
 			res.write("<h1>Shipping to customer: " + custId + " Name: " + custName + "</h1>");
-
+            res.write("<h1>Payment Type: " + paymentType + " Number: " + paymentNumber + "</h1>");
 			res.write("<h2><a href=\"/\">Return to shopping</a></h2>");
             res.write('</body>');
                 res.write('</html>');
