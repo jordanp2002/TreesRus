@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #f4f4f4; /* Add a background color for better visibility */
+    }
+
+    h3 {
+      color: green;
+    }
+
+    form {
+      margin: 0 auto;
+      text-align: center;
+      display: inline-block;
+      padding: 20px;
+      background-color: #fff; /* White background for the form */
+      border: 1px solid #ddd; /* Add a border for better separation */
+      border-radius: 5px; /* Add rounded corners */
+    }
+
+    table {
+      margin: 0 auto;
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+
+    .submit {
+      background-color: green;
+      color: white;
+      cursor: pointer;
+    }
+
+    .submit:hover {
+      background-color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <h3>Please Login to System</h3>
+
+  {{#if loginMessage}}
+    <p>{{loginMessage}}</p>
+  {{/if}}
+
+  <form name="MyForm" method="post" action="/validateLogin">
+    <table>
+      <tr>
+        <td>
+          <label for="username">Username:</label>
+        </td>
+        <td><input type="text" name="username" id="username" size="10" maxlength="10"></td>
+      </tr>
+      <tr>
+        <td>
+          <label for="password">Password:</label>
+        </td>
+        <td><input type="password" name="password" id="password" size="10" maxlength="10"></td>
+      </tr>
+    </table>
+    <br />
+    <input class="submit" type="submit" name="Submit2" value="Log In">
+     <p>
+      <a href="#" onclick="openPopup()">Forgot Username</a>
+        <script>
+            function openPopup() {
+             var email = prompt("Enter Email:");
+             if (email !== null) {
+               window.location.href = "/forgot-username?email=" + email;
+             }
+            }
+            </script>
+      <a href="#" onclick="openPopup2()">Forgot Password</a>
+      <script>
+        function openPopup2() {
+            var email = prompt("Enter Email:");
+            if (email !== null) {
+            var username = prompt("Enter Username:");
+            if (username !== null) {
+                window.location.href = "/forgot-password?email=" + email + "&username=" + username;
+                    }
+                }
+            }
+        </script>
+    </p>
+  </form>
+</body>
+</html>
+

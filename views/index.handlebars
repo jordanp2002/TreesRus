@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Tree Emporium</title>
+    
+        <!-- Bootstrap CSS via CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #cdeccd, #2b532d);
+            color: #000;
+            transition: background 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-gray">
+        <div class="container-fluid">
+            <a class="navbar-brand mb-0 h1">Trees"R"us</a>
+            <div class="navbar" id="navbarText">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" href="/listprod">Products</a>
+                    <a class="nav-link" href="/listorder">Orders</a>
+                    <a class="nav-link" href="/admin">Admin</a>
+                    <a class="nav-link" href="/customer">Customer</a>
+                    {{#if username}}
+                        <span class="nav-link">Signed in as: {{username}}</span>
+                        <a class="nav-link" href="/logout">Log Out</a>
+                    {{else}}
+                        <a class="nav-link" href="/login">Log In</a>
+                        <a class="nav-link" href="/createuser">Register</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>     
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 col-md-6 text-center">
+                <img src="img/forest.jpg" alt="Tree" class="img-fluid">
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="text-left">
+                    <h3>Our Trees</h3>
+                    <p>Our trees come straight to your door fully grown. Our crew of strong men will deliver the tree to your location by foot. Click the button below for a full list of the trees we have in inventory.</p>
+                    <a href="/listprod" class="btn btn-primary">Full List of Trees</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container mt-2">
+        <div class="text-left">
+            <h3>Most Popular Trees</h3>
+            <p>Our most popular trees for sale.</p>
+        </div>
+    </div>
+    <div class="container mt-2">
+        <div class="card-group">
+            <div class="card">
+                <img class="card-img-top" src="img/pine.png" alt="Pine Tree">
+                <div class="card-body">
+                    <h3 class="card-title">Pine Tree</h3>
+                    <p class="card-text">Description of pine tree.</p>
+                    <a href ="/product?id=12" class="btn btn-primary">Buy Now</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="img/oak.png" alt="Pine Tree">
+                <div class="card-body">
+                    <h3 class="card-title">Oak Tree</h3>
+                    <p class="card-text">Description of Oak tree.</p>
+                    <a href ="/product?id=9" class="btn btn-primary">Buy Now</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img-top" src="img/birch.png" alt="Pine Tree">
+                <div class="card-body">
+                    <h3 class="card-title">Birch Tree</h3>
+                    <p class="card-text">Description of Birch tree.</p>
+                    <a href ="/product?id=11" class="btn btn-primary">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    {{!-- Footer for site --}}
+    <footer class="navbar-expand-lg bg-dark text-white text-center py-0">
+        <p>Jordan Pohr & Bassim Beshry | 2023 | All content on this site (unless otherwise specified) is licensed under the CC BY-NC-SA 4.0 license</p>
+    </footer>
+
+    <!-- Bootstrap JavaScript and Popper.js via CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+   
+</body>
+</html>
