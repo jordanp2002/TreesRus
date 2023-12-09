@@ -40,7 +40,7 @@ router.get('/', function(req, res, next) {
         </head>
         <body>
     `);
-
+    let paymentType = false;
     let paymentNumber = false;
     let custId = false;
     if (req.query.customerId && Number.isInteger(parseInt(req.query.customerId))) {
@@ -50,6 +50,14 @@ router.get('/', function(req, res, next) {
         res.end();
         return;
     }
+    if(req.query.paymentType){
+        paymentType = req.query.paymentType;
+    }else{
+        res.write("<h1>Invalid payment type.  Go back to the previous page and try again.</h1>");
+        res.end();
+        return;
+    }
+    
     if(Number.isInteger(parseInt(req.query.paymentNumber))){
         paymentNumber = req.query.paymentNumber;
     }else{
@@ -69,7 +77,7 @@ router.get('/', function(req, res, next) {
     let sqlQuery = "SELECT customerId, firstName+' '+lastName as cname FROM Customer WHERE customerId = @custId";
     let orderId = false;
     let custName = false;
-    let paymentType = req.query.paymentType;
+    
     
     (async function() {
         try {
