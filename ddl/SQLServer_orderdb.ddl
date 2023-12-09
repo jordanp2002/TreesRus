@@ -131,19 +131,7 @@ CREATE TABLE productinventory (
         ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
-CREATE TABLE review (
-    reviewId            INT IDENTITY,
-    reviewRating        INT,
-    reviewDate          DATETIME,   
-    customerId          INT,
-    productId           INT,
-    reviewComment       VARCHAR(1000),          
-    PRIMARY KEY (reviewId),
-    FOREIGN KEY (customerId) REFERENCES customer(customerId)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (productId) REFERENCES product(productId)
-        ON UPDATE CASCADE ON DELETE CASCADE
-);
+
 
 
 
