@@ -7,9 +7,9 @@ router.get('/', function(req, res,next) {
     res.write("<title>Entering Customer</title>");
     
     let password = req.query.password;
-    let email = req.query.email;
+    let email = false;
     let address = req.query.address;
-    let phone = req.query.phonenum;
+    let phone = false;
     let firstname = req.query.firstName;
     let lastname = req.query.lastName;
     let postalCode = req.query.postalCode
@@ -17,6 +17,21 @@ router.get('/', function(req, res,next) {
     let state = req.query.state;
     let country = req.query.country;
     let userid = req.query.userid;
+    if (Number.isInteger(parseInt(req.query.phonenum))) {
+        phone = req.query.phonenum;
+    }else{
+        res.write("<h1>Invalid phone number.  Go back to the previous page and try again.</h1>");
+        res.end();
+        return;
+    }
+    if((req.query.email).includes("@")){
+        email = req.query.email;
+    }else{
+        res.write("<h1>Invalid email.  Go back to the previous page and try again.</h1>");
+        res.end();
+        return;
+    }
+
     (async function() {
         try {
             let pool = await sql.connect(dbConfig);
@@ -46,5 +61,7 @@ router.get('/', function(req, res,next) {
         }
         })();
         
+        
 });
+
 module.exports = router;
