@@ -16,7 +16,7 @@ router.get('/', function(req, res,next) {
                 .input('customerId', sql.Int, customerId)
                 .query(sqlQuery);
                 res.write("<h1>Username: " + userid + "</h1>");
-                res.write("<h2><a href=\"/customer\">Return to Customer Page</a></h2>");
+                res.write("<h2><a href=\"/\">Return to Home</a></h2>");
                 res.end();
             return true;
         } catch (err) {

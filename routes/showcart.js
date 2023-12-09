@@ -5,6 +5,7 @@ router.get('/', function(req, res, next) {
     let productList = false;
     res.setHeader('Content-Type', 'text/html');
     res.write("<title>Your Shopping Cart</title>");
+    //html done with help from co-pilot/chatgpt
     if (req.session.productList) {
         productList = req.session.productList;
         res.write(`

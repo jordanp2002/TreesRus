@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sql = require('mssql');
 
-//coded with help of co-pilot
+//coded with help of co-pilot/chatgpt
 router.get('/', function(req, res, next) {
     const updatedQuantities = req.query; 
     if (req.session.productList) {

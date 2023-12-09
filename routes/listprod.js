@@ -6,6 +6,7 @@ router.get('/', function(req, res, next) {
     res.setHeader('Content-Type', 'text/html');
     (async function() {
         try {
+            //html done with help from co-pilot/chatgpt
             let pool = await sql.connect(dbConfig);
 
             res.write(`

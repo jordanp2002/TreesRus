@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
     let productId = req.query.id;
     (async function() {
         try {
-            
+            //html done with help from co-pilot/chatgpt
             res.write('<!DOCTYPE html>');
             res.write('<html lang="en">');
             res.write('<head>');

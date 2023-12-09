@@ -3,6 +3,7 @@ const router = express.Router();
 const sql = require('mssql');
 
 router.get('/', function(req, res, next) {
+    //html done with help from co-pilot/chatgpt
     res.write(`
         <!DOCTYPE html>
         <html lang="en">
