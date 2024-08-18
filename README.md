@@ -3,7 +3,7 @@
 
 ### About
 
-TreesRus is an online retail store specializing in the sale of Tree Samplings. 
+TreesRus is an online retail store specializing in the sale of Tree Saplings. 
 
 Features:
 - Detailed Tree Information to make an informed purchase
