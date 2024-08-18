@@ -8,22 +8,22 @@ router.get('/', function(req, res, next) {
     (async function() {
         try {
             let pool = await sql.connect(dbConfig);
-            //html coded with help of copilot/chatgpt
-            res.write('<!DOCTYPE html>');
-            res.write('<html lang="en">');
-            res.write('<head>');
-            res.write('<meta charset="UTF-8">');
-            res.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
-            res.write('<title>Your Tree Emporium Order List</title>');
-            res.write('<style>');
-            
-            res.write('body {font-family: Arial, sans-serif; text-align: center; margin: 20px;}');
-            res.write('h1 {color: green;}');
-            res.write('table {border-collapse: collapse; width: 80%; margin: 20px auto;}');
-            res.write('th, td {border: 1px solid #ddd; padding: 8px; text-align: left;}');
-            res.write('</style>');
-            res.write('</head>');
-            res.write('<body>');
+            res.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Your Tree Emporium Order List</title>
+                    <style>
+                        body {font-family: Arial, sans-serif; text-align: center; margin: 20px;}
+                        h1 {color: green;}
+                        table {border-collapse: collapse; width: 80%; margin: 20px auto;}
+                        th, td {border: 1px solid #ddd; padding: 8px; text-align: left;}
+                    </style>
+                </head>
+                <body>
+                `); 
             
             let productName = req.query.productName;
             let sqlSelect = 'SELECT * FROM product WHERE productName = @productName'
@@ -45,19 +45,21 @@ router.get('/', function(req, res, next) {
     
         } catch (err) {
             console.dir(err);
-            res.write('<!DOCTYPE html>');
-            res.write('<html lang="en">');
-            res.write('<head>');
-            res.write('<meta charset="UTF-8">');
-            res.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
-            res.write('<title>Error</title>');
-            res.write('</head>');
-            res.write('<body>');
-            res.write('<h1>Error</h1>');
-            res.write('<p>' + err + '</p>');
-            res.write('<h3>Has the data been loaded?</h3>');
-            res.write('</body>');
-            res.write('</html>');
+            res.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Error</title>
+                </head>
+                <body>
+                    <h1>Error</h1>
+                    <p>${err}</p>
+                    <h3>Has the data been loaded?</h3>
+                </body>
+                </html>
+                `);                
             res.end();
         }
     })();

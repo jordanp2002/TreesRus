@@ -5,7 +5,6 @@ const moment = require('moment');
 
 router.get('/', function(req, res, next) {
     res.setHeader('Content-Type', 'text/html');
-    //html done with help from co-pilot/chatgpt
     res.write(`
                 <!DOCTYPE html>
                 <html lang="en">

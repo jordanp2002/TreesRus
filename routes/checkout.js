@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', function(req, res, next) {
-    //html coded with help from co-pilot/chatgpt
     res.write(`
         <!DOCTYPE html>
         <html lang="en">

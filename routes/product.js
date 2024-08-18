@@ -7,7 +7,6 @@ router.get('/', function(req, res, next) {
     (async function() {
         try {
             let pool = await sql.connect(dbConfig);
-            //html done with help from co-pilot/chatgpt
             res.write(`
             <title>YOUR NAME Grocery - Product Information</title>
             <!DOCTYPE html>

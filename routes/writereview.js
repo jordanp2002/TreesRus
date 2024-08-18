@@ -7,40 +7,50 @@ router.get('/', function(req, res, next) {
     let productId = req.query.id;
     (async function() {
         try {
-            //html done with help from co-pilot/chatgpt
-            res.write('<!DOCTYPE html>');
-            res.write('<html lang="en">');
-            res.write('<head>');
-            res.write('    <meta charset="UTF-8">');
-            res.write('    <meta name="viewport" content="width=device-width, initial-scale=1.0">');
-            res.write('    <title style="color: green;">Write Review</title>');
-            res.write('<style>');
-            res.write('    body {');
-            res.write('        background-color: white;');
-            res.write('        display: flex;');
-            res.write('        align-items: center;');
-            res.write('        justify-content: center;');
-            res.write('        height: 100vh;');
-            res.write('        margin: 0;');
-            res.write('    }');
-            res.write('    .container {');
-            res.write('        text-align: center;');
-            res.write('    }');
-            res.write('</style>');
-            res.write('</head>');
-            res.write('<body>');
-            res.write('<div class="container">');
-        
-            res.write('<h2 style="color: green;">Write a Review</h2>');
-            res.write('<form action="/submit-review" method="get">');
-            res.write('    <input type="hidden" name="productId" value="' + productId + '">');
-            res.write('    <label for="desc" style="color: green;">Enter your review:</label>');
-            res.write('    <textarea id="desc" name="desc" rows="4" cols="50"></textarea><br>');
-            res.write('    <input type="submit" value="Submit Review" style="background-color: green; color: white;">');
-            res.write('</form>');
-            res.write('</div>');
-            res.write('</body>');
-            res.write('</html>');
+            res.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title style="color: green;">Write Review</title>
+                    <style>
+                        body {
+                            background-color: white;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            height: 100vh;
+                            margin: 0;
+                        }
+                        .container {
+                            text-align: center;
+                        }
+                        h2 {
+                            color: green;
+                        }
+                        label {
+                            color: green;
+                        }
+                        input[type="submit"] {
+                            background-color: green;
+                            color: white;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <h2>Write a Review</h2>
+                        <form action="/submit-review" method="get">
+                            <input type="hidden" name="productId" value="${productId}">
+                            <label for="desc">Enter your review:</label>
+                            <textarea id="desc" name="desc" rows="4" cols="50"></textarea><br>
+                            <input type="submit" value="Submit Review">
+                        </form>
+                    </div>
+                </body>
+                </html>
+                `);                
             res.end();
 
         } catch(err) {

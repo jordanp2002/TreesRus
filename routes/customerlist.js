@@ -17,26 +17,25 @@ router.get('/', function(req, res, next) {
 
     (async function() {
         try {
-            //html coded with help of co-pilot/chatgpt
             let pool = await sql.connect(dbConfig);
-            res.write('<!DOCTYPE html>');
-            res.write('<html lang="en">');
-            res.write('<head>');
-            res.write('<meta charset="UTF-8">');
-            res.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
-            res.write('<title>Administrator Page</title>');
-            res.write('<style>');
-            // Add your CSS styles here
-            res.write('body {font-family: Arial, sans-serif; text-align: center; margin: 20px;}');
-            res.write('h1 {color: green;}');
-            res.write('table {border-collapse: collapse; width: 80%; margin: 20px auto;}');
-            res.write('th, td {border: 1px solid #ddd; padding: 8px; text-align: left;}');
-            res.write('.bar-container {display: flex; align-items: baseline; height: 30px;}');
-            res.write('.bar {flex: 1; height: 100%; background-color: green; margin: 0 2px;}');
-            res.write('</style>');
-            res.write('</head>');
-            res.write('<body>');
-
+            res.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Administrator Page</title>
+                    <style>
+                        body {font-family: Arial, sans-serif; text-align: center; margin: 20px;}
+                        h1 {color: green;}
+                        table {border-collapse: collapse; width: 80%; margin: 20px auto;}
+                        th, td {border: 1px solid #ddd; padding: 8px; text-align: left;}
+                        .bar-container {display: flex; align-items: baseline; height: 30px;}
+                        .bar {flex: 1; height: 100%; background-color: green; margin: 0 2px;}
+                    </style>
+                </head>
+                <body>
+                `);
             res.write('<h3>Customers</h3>')
             let sqlQuery2 = "SELECT firstName,lastName FROM customer"
             let result2 = await pool.request().query(sqlQuery2);

@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
     }
 
     let username = req.session.authenticatedUser;
-    //html coded with help from co-pilot/chatgpt
     res.setHeader('Content-Type', 'text/html');
     res.write(`
                 <!DOCTYPE html>

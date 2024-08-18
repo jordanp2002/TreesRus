@@ -6,9 +6,7 @@ router.get('/', function(req, res, next) {
     res.setHeader('Content-Type', 'text/html');
     (async function() {
         try {
-            //html done with help from co-pilot/chatgpt
             let pool = await sql.connect(dbConfig);
-
             res.write(`
                 <!DOCTYPE html>
                 <html lang="en">
@@ -56,8 +54,6 @@ router.get('/', function(req, res, next) {
                 <br>
                 <br>
             `);
-
-            //html coded with assisant of copilot/chatgpt
             res.write(`
                 <html lang="en">
                 <head>
