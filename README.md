@@ -1,4 +1,4 @@
-# Trees "R" Us Website Project
+# Trees "R" Us 
 ## Visuals Done By Bassim Beshry, Functionality Done By Jordan Pohr
 
 ### Libraries Used:
