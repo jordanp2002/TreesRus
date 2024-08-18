@@ -60,98 +60,96 @@ router.get('/', function(req, res, next) {
     (async function() {
         try {
             let pool = await sql.connect(dbConfig);
-            res.write('<!DOCTYPE html>');
-            res.write('<html lang="en">');
-            res.write('<head>');
-            res.write('<meta charset="UTF-8">');
-            res.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
-            res.write('<title>Administrator Page</title>');
-            res.write('<style>');
-            // Add your CSS styles here
-            
-          
-            res.write('body {');
-            res.write('  font-family: Arial, sans-serif;');
-            res.write('  text-align: center;');
-            res.write('  margin: 20px;');
-            res.write('}');
-
-            res.write('h1 {color: green;}');
-            res.write('table {border-collapse: collapse; width: 80%; margin: 20px auto;}');
-            res.write('th, td {border: 1px solid #ddd; padding: 8px; text-align: left;}');
-            
-
-            res.write('.bar-container {');
-            res.write('  display: flex;');
-            res.write('  align-items: center;');
-            res.write('  justify-content: center;'); // Center the navigation bar
-            res.write('  height: 30px;');
-            res.write('}');
-            res.write('.bar {');
-            res.write('  flex: 1;');
-            res.write('  height: 100%;');
-            res.write('  background-color: green;');
-            res.write('  justify-content: center;');
-            res.write('  margin: 0 2px;');
-            res.write('}');
-
-            res.write('nav {');
-            res.write('  background-color: green;');
-            res.write('  overflow: hidden;');
-            res.write('  text-align: center;');
-            res.write('  width: 100%;');
-            res.write('  justify-content: center;');
-            res.write('}');
-
-            res.write('nav a {');
-            res.write('  display: block;'); // Display as block to stack vertically
-            res.write('  color: white;');
-            res.write('  text-align: center;');
-            res.write('  padding: 14px 16px;');
-            res.write('  text-decoration: none;');
-            
-            res.write('}');
-
-            res.write('nav a:hover {');
-            res.write('  background-color: white;');
-            res.write('  color: black;');
-            res.write('}');
-            res.write('</style>');
-            res.write('</head>');
-            res.write('<body>');
-
-            res.write('<h1>Admin Portal User: ' + username + '</h1>');
-            
-            res.write('<nav>');
-            res.write('<a href="/createware">Add Warehouse</a>');
-            res.write('<a href="/createuser">Add User</a>');
-            res.write('<a href="/createprod">Add Product</a>');
-            res.write('<a href="#" onclick="openPopup()">View Inventory</a>');
-            res.write('<script>');
-            res.write('function openPopup() {');
-            res.write('  var warehouseId = prompt("Enter Warehouse ID:");');
-            res.write('  if (warehouseId !== null) {');
-            res.write('    window.location.href = "/InventoryView?warehouseId=" + warehouseId;');
-            res.write('  }');
-            res.write('}');
-            res.write('</script>');
-            res.write('<a href="#" onclick="openPopup2()">Delete Product</a>');
-            res.write('<script>');
-            res.write('function openPopup2() {');
-            res.write('  var productName = prompt("Product you wish to delete:");');
-            res.write('  if (productName !== null) {');
-            res.write('    window.location.href = "/deleteProd?productName=" + productName;');
-            res.write('  }');
-            res.write('}');
-            res.write('</script>');
-            res.write('<a href="/loaddata">Restore Database</a>');
-            res.write('<a href="/customerlist">Customer List</a>')
-            res.write('</nav>');
-
-            res.write('<br>');
-            res.write("<h3>Administrator Sales Report by Day</h3>");
-            res.write('<table>');
-
+            res.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Administrator Page</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            text-align: center;
+                            margin: 20px;
+                        }
+                        h1 {
+                            color: green;
+                        }
+                        table {
+                            border-collapse: collapse;
+                            width: 80%;
+                            margin: 20px auto;
+                        }
+                        th, td {
+                            border: 1px solid #ddd;
+                            padding: 8px;
+                            text-align: left;
+                        }
+                        .bar-container {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center; /* Center the navigation bar */
+                            height: 30px;
+                        }
+                        .bar {
+                            flex: 1;
+                            height: 100%;
+                            background-color: green;
+                            justify-content: center;
+                            margin: 0 2px;
+                        }
+                        nav {
+                            background-color: green;
+                            overflow: hidden;
+                            text-align: center;
+                            width: 100%;
+                            justify-content: center;
+                        }
+                        nav a {
+                            display: block; /* Display as block to stack vertically */
+                            color: white;
+                            text-align: center;
+                            padding: 14px 16px;
+                            text-decoration: none;
+                        }
+                        nav a:hover {
+                            background-color: white;
+                            color: black;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>Admin Portal User: ${username}</h1>
+                    <nav>
+                        <a href="/createware">Add Warehouse</a>
+                        <a href="/createuser">Add User</a>
+                        <a href="/createprod">Add Product</a>
+                        <a href="#" onclick="openPopup()">View Inventory</a>
+                        <script>
+                            function openPopup() {
+                                var warehouseId = prompt("Enter Warehouse ID:");
+                                if (warehouseId !== null) {
+                                    window.location.href = "/InventoryView?warehouseId=" + warehouseId;
+                                }
+                            }
+                        </script>
+                        <a href="#" onclick="openPopup2()">Delete Product</a>
+                        <script>
+                            function openPopup2() {
+                                var productName = prompt("Product you wish to delete:");
+                                if (productName !== null) {
+                                    window.location.href = "/deleteProd?productName=" + productName;
+                                }
+                            }
+                        </script>
+                        <a href="/loaddata">Restore Database</a>
+                        <a href="/customerlist">Customer List</a>
+                    </nav>
+                    <br>
+                    <h3>Administrator Sales Report by Day</h3>
+                    <table>
+                `);                
             let sqlQuery = "select year(orderDate) as year, month(orderDate) as month, day(orderDate) as day, SUM(totalAmount) as totalSum FROM OrderSummary GROUP BY year(orderDate), month(orderDate), day(orderDate)";
             let result = await pool.request().query(sqlQuery);
             let years = [];
@@ -168,36 +166,37 @@ router.get('/', function(req, res, next) {
                 
             }
             let chartData = await getChartData(months, totalSums);
-            res.write('</table>');
-            res.write('<div style="display: flex; justify-content: center; align-items: center; height: 80vh;">');
-            res.write('<canvas id="myChart" style="width:100%;max-width:700px">');
-            res.write('</canvas>');
-            res.write('<script>');
-            res.write('var ctx = document.getElementById("myChart").getContext("2d");');
-            res.write('var myChart = new Chart(ctx, {');
-            res.write('  type: "bar",');
-            res.write('  data: {');
-            res.write('    labels: ' + JSON.stringify(chartData.labels) + ',');
-            res.write('    datasets: [{');
-            res.write('      label: "Total Order Amount",');
-            res.write('      data: ' + JSON.stringify(chartData.data) + ',');
-            res.write('      backgroundColor: "rgba(75, 192, 192, 0.2)",');
-            res.write('      borderColor: "rgba(75, 192, 192, 1)",');
-            res.write('      borderWidth: 1');
-            res.write('    }]');
-            res.write('  },');
-            res.write('  options: {');
-            res.write('    scales: {');
-            res.write('      y: {');
-            res.write('        beginAtZero: true');
-            res.write('      }');
-            res.write('    }');
-            res.write('  }');
-            res.write('});');
-            res.write('</script>');
-            res.write('</div>');
-            res.write('</body>');
-            res.write('</html>');
+            res.write(`
+                </table>
+                <div style="display: flex; justify-content: center; align-items: center; height: 80vh;">
+                    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+                    <script>
+                        var ctx = document.getElementById("myChart").getContext("2d");
+                        var myChart = new Chart(ctx, {
+                            type: "bar",
+                            data: {
+                                labels: ${JSON.stringify(chartData.labels)},
+                                datasets: [{
+                                    label: "Total Order Amount",
+                                    data: ${JSON.stringify(chartData.data)},
+                                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                                    borderColor: "rgba(75, 192, 192, 1)",
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+                </body>
+                </html>
+                `);                
             res.end();
 
         } catch(err) {
