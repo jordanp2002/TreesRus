@@ -1,6 +1,17 @@
 # Trees "R" Us 
 ## Visuals Done By Bassim Beshry, Functionality Done By Jordan Pohr
 
+### About
+
+TreesRus is an online retail store specializing in the sale of Tree Samplings. 
+
+Features:
+- Detailed Tree Information to make an informed purchase
+- Account creation
+- Dynamic Cart
+- Admin Controls
+
+
 ### Libraries Used:
 - [Chart.js](https://www.chartjs.org/): Used for creating interactive charts and graphs.
 - [Bootstrap](https://getbootstrap.com/): A popular front-end framework for building responsive and mobile-first websites.
